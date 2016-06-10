@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+
+
+.topo{
+    background-color: brown;
+    color: white;
+}
+
+.pesquisa{
+    margin-top: 50px;
+}
+
+
+table thead tr th {
+
+    font-size: 14px;
+    text-align:center;
+    padding: 0px auto 20px auto;
+
+}
+
+table tbody tr td {
+    font-size: 11px!important;
+    vertical-align: middle !important;
+    text-align: center;
+
+
+}
+
+
+.btn-afast{
+    margin-right: 7px!important;
+}
+
+.btn-topo{
+    width: 60px;
+    height: 60px;
+    margin-top: 5px;
+    border-radius: 100%;
+    box-shadow: 3px 3px 3px  rgba(0,0,0,.3);
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border:none ;
+    font-size: 20px;
+    padding-top: 16px;
+}
+
+.btn-topo:hover{
+    background-color: rgba(30,144,255,.8);
+}
+
+.rodape-center{
+    text-align: center;
+}
