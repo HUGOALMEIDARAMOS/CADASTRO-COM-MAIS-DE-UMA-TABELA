@@ -53,26 +53,26 @@ require_once 'verificacao_id.php';
 <div id="main" class="container">
     <h3 class="page-header">Edição de Cadastro de Cliente</h3>
 
-    <form action="alterar.php" class="borda_form" id="form" name="form" >
+    <form action="alterar.php" class="borda_form" method="post" id="form" name="form" >
 
-        <input type="hidden" name="pais_id" value="<?= isset($dado['cliente_id']) ? $dado['cliente_id'] : 0 ?>">
+        <input type="hidden" name="cliente_id" value="<?= isset($dado['cliente_id']) ? $dado['cliente_id'] : 0 ?>">
 
             <div class="row">
 
                 <div class="form-group col-md-5">
                        <label for="nome">Nome</label>
-                       <input type="text" class="form-control" id="nome" name="nome" placeholder="Primeiro Nome" value="<?= isset($pessoa['primeiro_nome']) ? $pessoa['primeiro_nome'] : "" ?>">
+                       <input type="text" class="form-control" id="nome" name="primeiro_nome" placeholder="Primeiro Nome" value="<?= isset($pessoa['primeiro_nome']) ? $pessoa['primeiro_nome'] : "" ?>">
 
                 </div>
 
                 <div class="form-group col-md-5">
                         <label for="sobrenome">Sobrenome</label>
-                        <input type="text" class="form-control" id="sobrenome" placeholder="Segundo Nome" value="<?= isset($pessoa['ultimo_nome']) ? $pessoa['ultimo_nome'] : "" ?>">
+                        <input type="text" class="form-control" id="sobrenome" name="ultimo_nome" placeholder="Segundo Nome" value="<?= isset($pessoa['ultimo_nome']) ? $pessoa['ultimo_nome'] : "" ?>">
                 </div>
 
                 <div class="form-group col-md-2">
                        <label for="telefone">Telefone</label>
-                       <input type="text" class="form-control" id="telefone"  placeholder="(xx)xxxxx-xxxx" maxlength="11"  onkeypress='return SomenteNumero(event);'  value="<?= isset($pessoa['telefone']) ? $pessoa['telefone'] : "" ?>">
+                       <input type="text" class="form-control" id="telefone" name="telefone"  placeholder="(xx)xxxxx-xxxx" maxlength="11"  onkeypress='return SomenteNumero(event);'  value="<?= isset($pessoa['telefone']) ? $pessoa['telefone'] : "" ?>">
                 </div>
             </div>
 
@@ -107,7 +107,7 @@ require_once 'verificacao_id.php';
 
             <div class="form-group col-md-3">
                 <label for="pais_input">Pais</label>
-                <select name="pais_input" id="pais" class="form-control" id="pais" name="pais">
+                <select name="pais_id" id="pais" class="form-control" id="pais" name="pais">
                     <?php foreach($paises as $pais):?>
                         <option value="<?=$pais['pais_id'];?>"><?=$pais['pais'];?></option>
                     <?php endforeach;?>
@@ -117,7 +117,7 @@ require_once 'verificacao_id.php';
 
             <div class="form-group col-md-3">
                 <label for="cidade_input">Cidade</label>
-                <select name="pais_input" id="pais" class="form-control" id="cidade" name="cidade">
+                <select name="cidade_id" id="pais" class="form-control" id="cidade" name="cidade">
                     <?php foreach($cidades as $cidade):?>
                         <option  value="<?=$cidade['cidade_id'];?>"><?=$cidade['cidade'];?></option>
                     <?php endforeach;?>
