@@ -55,7 +55,7 @@ require_once 'verificacao_id.php';
 
     <form action="alterar.php" class="borda_form" method="post" id="form" name="form" >
 
-        <input type="hidden" name="cliente_id" value="<?= isset($dado['cliente_id']) ? $dado['cliente_id'] : 0 ?>">
+        <input type="hidden" name="cliente_id" value="<?= isset($pessoa['cliente_id']) ? $pessoa['cliente_id'] : 0 ?>">
 
             <div class="row">
 

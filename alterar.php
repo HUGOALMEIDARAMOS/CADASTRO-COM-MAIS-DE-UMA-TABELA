@@ -50,64 +50,42 @@ try{
     if(!isset($_POST['cidade_id']))
         throw new Exception("Nenhum cidade_id foi enviado!");
 
-    //Query para atualizar cliente
+    //Query para atualizar pais
     $query = "UPDATE
-                cliente as c
+                cliente as c,
+                endereco as e
               SET
                 c.primeiro_nome = :primeiro_nome,
                 c.ultimo_nome = :ultimo_nome,
-                c.email = :email,
-                c.ultima_atualizacao = :ultima_atualizacao
-              WHERE
-                c.cliente_id = :cliente_id";
-
-    //Preparar a query com PDO
-    $conexao = $pdo->prepare($query);
-
-    //Verificação para evitar SQL Injection
-    $conexao->bindValue(":primeiro_nome", $_POST['primeiro_nome']);
-    $conexao->bindValue(":ultimo_nome", $_POST['ultimo_nome']);
-    $conexao->bindValue(":email", $_POST['email']);
-    $conexao->bindValue(":ultima_atualizacao", date('Y-m-d H:i:s'));
-    $conexao->bindValue(":cliente_id", $_POST['cliente_id']);
-
-    //Realizar atualização do cliente
-    $conexao->execute();
-
-    //obter endereco_id desse cliente
-    $sql = "SELECT endereco_id FROM cliente WHERE cliente_id = :cliente_id";
-    $conexao = $pdo->prepare($sql);
-    $conexao->bindValue(":cliente_id", $_POST['cliente_id']);
-    $conexao->execute();
-    $endereco_id = $conexao->fetch(PDO::FETCH_ASSOC)['endereco_id'];
-
-
-    //Query para atualizar endereço
-    $query = "UPDATE
-                endereco as e
-              SET
                 e.telefone = :telefone,
+                c.email = :email,
                 e.endereco = :endereco,
                 e.cep = :cep,
                 e.bairro = :bairro,
                 e.cidade_id = :cidade_id,
+                c.ultima_atualizacao = :ultima_atualizacao,
                 e.ultima_atualizacao = :ultima_atualizacao
               WHERE
-                e.endereco_id = :endereco_id";
+                c.cliente_id = :cliente_id AND
+                e.endereco_id = c.endereco_id";
 
     //Preparar a query com PDO
-    $conexao = $pdo->prepare($query);
+    $p_sql = $pdo->prepare($query);
 
     //Verificação para evitar SQL Injection
-    $conexao->bindValue(":telefone", $_POST['telefone']);
-    $conexao->bindValue(":endereco", $_POST['endereco']);
-    $conexao->bindValue(":cep", $_POST['cep']);
-    $conexao->bindValue(":bairro", $_POST['bairro']);
-    $conexao->bindValue(":cidade_id", $_POST['cidade_id']);
-    $conexao->bindValue(":ultima_atualizacao", date('Y-m-d H:i:s'));
-    $conexao->bindValue(":endereco_id", $endereco_id);
+    $p_sql->bindValue(":primeiro_nome", $_POST['primeiro_nome']);
+    $p_sql->bindValue(":ultimo_nome", $_POST['ultimo_nome']);
+    $p_sql->bindValue(":telefone", $_POST['telefone']);
+    $p_sql->bindValue(":email", $_POST['email']);
+    $p_sql->bindValue(":endereco", $_POST['endereco']);
+    $p_sql->bindValue(":cep", $_POST['cep']);
+    $p_sql->bindValue(":bairro", $_POST['bairro']);
+    $p_sql->bindValue(":cidade_id", $_POST['cidade_id']);
+    $p_sql->bindValue(":ultima_atualizacao", date('Y-m-d H:i:s'));
+    $p_sql->bindValue(":cliente_id", $_POST['cliente_id']);
 
-    $conexao->execute();
+    //Realizar atualização do pais
+    $p_sql->execute();
 
     //Redirecionar para a página principal
     header("Location: index.php");
