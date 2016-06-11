@@ -124,8 +124,9 @@ require_once 'listar.php';
                         <div class="input-group-btn">
                             <a href="editar.php?cliente_id=<?= $pessoa['cliente_id'] ?>"
                                class="btn btn-warning btn-xs btn-afast">Editar</a>
-                            <a href="apagar.php?cliente_id=<?= $pessoa['cliente_id'] ?>" class="btn btn-danger btn-xs"
-                               data-toggle="modal" data-target="#delete-modal">Excluir</a>
+                            <a href="apagar.php?cliente_id=<?= $pessoa['cliente_id'] ?>"
+                               class="btn btn-danger btn-xs"
+                               onclick="return confirm('Deseja Realmente Excluir?');">Excluir</a>
                         </div>
                     </td>
 
